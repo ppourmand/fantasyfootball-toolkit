@@ -7,7 +7,11 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
+    "jquery": "^3.1.0",
     "node": "0.0.0",
+    "nonce": "^1.0.4",
+    "oauth": "^0.9.14",
+    "qs": "^6.2.1",
     "yahoo-fantasy": "^0.5.3"
   },
   "engines": {
