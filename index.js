@@ -35,9 +35,20 @@ passport.use(new YahooStrategy({
     callbackURL: "https://footballtoolkit.herokuapp.com/auth/yahoo/callback"
   },
   function(token, tokenSecret, profile, done) {
-    User.findOrCreate({ yahooId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
+    var data = profile._json;
+
+    var userObj = {
+      id: profile.id,
+      name: data.profile.nickname,
+      avatar: data.profile.image.imageUrl,
+      dateJoined: new Date().getTime(),
+      lastUpdated: new Date().getTime(),
+      lastVisit: new Date().getTime(),
+      accessToken: token,
+      tokenSecret: tokenSecret,
+      sessionHandle: profile.oauth_session_handle
+    };
+    return done(null, userObj);
   }
 ));
 
