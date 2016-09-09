@@ -4,6 +4,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <!-- <script src='playerPopulate.js'</script> -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -14,7 +15,6 @@
     <div class="header">
       <div class="header-text">
         Fantasy Football Toolkit
-        <a href="/auth/yahoo"> sign in using yahoo!</a>
       </div>
     </div>
 
@@ -22,10 +22,30 @@
 
       <div class="border row">
         <div class="border col-lg-4 col-xs-4">
-          <!-- Single button -->
+          <div class="dropdown" id='qbdropdown'>
+            <button class="btn btn-default dropdown-toggle" type="button" id="qbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+              QB
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="qb">
+
+            </ul>
+          </div>
+
+          <div class="dropdown" id='rbdropdown'>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              RB
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id='rb'>
+
+            </ul>
+          </div>
+
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Player
+              WR
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -37,7 +57,19 @@
 
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Defense
+              K
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Pl</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              DEF
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -49,35 +81,16 @@
 
         </div>
         <div class="border col-lg-8 col-xs-8">
-          <table class="table table-striped">
-            <tr>
-              <th> First name </th>
-              <th> Last name </th>
-              <th> Passing yards </th>
-              <th> Rushing yards </th>
-            </tr>
-
-            <tr>
-              <th> Eli </th>
-              <th> Manning </th>
-              <th> 1 </th>
-              <th> 1 </th>
-            </tr>
-
-            <tr>
-              <th> Marshawn </th>
-              <th> Lynch </th>
-              <th> 1 </th>
-              <th> 1 </th>
-            </tr>
-
+          <table class="table table-striped" >
+            <tbody id='stats-table'>
+          </tbody>
           </table>
 
         </div>
       </div>
     </div>
 
-
+    <script type="text/javascript" src='/js/playerPopulate.js'></script>
   </body>
 
 </html>
