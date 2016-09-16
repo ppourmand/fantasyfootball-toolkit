@@ -6,10 +6,14 @@ var request = require('request');
 var router = express.Router();
 var session = require('express-session');
 var path = __dirname + '/views/';
-var params = {
-  format: 'JSON',
-  season: '2015REG'
+var options = {
+  nfl: {
+      version: 'nfl/v3',
+      key: ' 01c35bafdc1b44f6b555db93e7997b0c' // <-- Pass in your nfl key here
+    }
 };
+var fantasyData = require('fantasydata-api')(options);
+
 
 //var YahooStrategy = require('passport-yahoo-oauth');
 //var passport = require('passport'), YahooStrategy = require('passport-yahoo-oauth').Strategy;
@@ -31,21 +35,10 @@ router.use(function (req,res,next) {
 });
 
 app.get('/', function (req, res) {
-  // req.headers["Authorization"] = "01c35bafdc1b44f6b555db93e7997b0c"
-  //
-  // request.get({
-  //   url: "https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerSeasonStatsByPlayerID/2015REG/732?"
-  // },
-  //
-  // function(error, response, body) {
-  //       if (!error && response.statusCode == 200) {
-  //           res.json(body);
-  //          }
-  //       else{
-  //         console.log('fuck');
-  //         console.log(response.statusCode);
-  //       }
-  //      });
+  // var season = '2015REG';
+  // fantasyData.nfl.currentSeason(function(err, results){
+  //   console.log(results);
+  // });
 
   res.sendFile(path + 'index.html');
 });

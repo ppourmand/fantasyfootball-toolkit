@@ -20,65 +20,80 @@
 
     <div class="container-fluid">
 
+
       <div class="border row">
         <div class="border col-lg-4 col-xs-4">
-          <div class="dropdown" id='qbdropdown'>
-            <button class="btn btn-default dropdown-toggle" type="button" id="qbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
-              QB
-              <span class="caret"></span>
-            </button>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="qb">
+          <div class="row">
+            <button type="button" id='clear-button' class="btn btn-secondary btn-lg">Clear Table</button>
 
-            </ul>
+
+            <div class="col-md-2">
+              <div class="dropdown" id='qbdropdown'>
+                <button class="btn btn-default dropdown-toggle" type="button" id="qbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="false">
+                  QB
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="qb">
+
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-md-2">
+              <div class="dropdown" id='rbdropdown'>
+                <button class="btn btn-default dropdown-toggle" type="button" id="rbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="false">
+                  RB
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id='rb'>
+                  <li><a href="#">Coming soon</a></li>
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  WR
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Coming soon</a></li>
+
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  K
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Coming soon</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  DEF
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Coming soon</a></li>
+                </ul>
+              </div>
+            </div>
+
           </div>
-
-          <div class="dropdown" id='rbdropdown'>
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              RB
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id='rb'>
-
-            </ul>
-          </div>
-
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              WR
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Pl</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-            </ul>
-          </div>
-
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              K
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Pl</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-            </ul>
-          </div>
-
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              DEF
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Pl</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-            </ul>
-          </div>
-
         </div>
         <div class="border col-lg-8 col-xs-8">
           <table class="table table-striped" >
@@ -91,6 +106,8 @@
     </div>
 
     <script type="text/javascript" src='/js/playerPopulate.js'></script>
+    <!-- <script type="text/javascript" src='/js/generatePlayerStats.js'></script> -->
+
   </body>
 
 </html>

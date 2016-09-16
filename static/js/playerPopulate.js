@@ -1,4 +1,5 @@
-var QBArray2016 = [
+// global variables
+var qbNames = [
   'Allen, Brandon',
   'Anderson, Derek',
   'Bortles, Blake',
@@ -30,15 +31,15 @@ var QBArray2016 = [
   'Goff, Jared',
   'Gradkowski, Bruce',
   'Grayson, Garrett',
-  'Griffin, Robert',
+  'Griffin, Robert, III',
   'Griffin, Ryan',
   'Hackenberg, Christian',
+  'Heinicke, Taylor',
   'Henne, Chad',
   'Hill, Shaun',
   'Hoyer, Brian',
   'Hundley, Brett',
   'Johnson, Josh',
-  'Jones, Cardale',
   'Jones, Landry',
   'Kaepernick, Colin',
   'Keenum, Case',
@@ -47,18 +48,17 @@ var QBArray2016 = [
   'Luck, Andrew',
   'Lynch, Paxton',
   'Mallett, Ryan',
-  'Manning, Eli',
   'Mannion, Sean',
   'Manuel, EJ',
   'Mariota, Marcus',
   'McCarron, AJ',
   'McCown, Josh',
+  'Manning, Eli',
   'McCown, Luke',
   'McCoy, Colt',
   'McGloin, Matt',
-  'Moore, Kellen',
+  'Mettenberger, Zach',
   'Moore, Matt',
-  'Morris, Stephen',
   'Nassib, Ryan',
   'Newton, Cam',
   'Orlovsky, Dan',
@@ -79,6 +79,7 @@ var QBArray2016 = [
   'Siemian, Trevor',
   'Smith, Alex',
   'Smith, Geno',
+  'Moore, Kellen',
   'Stafford, Matthew',
   'Stanton, Drew',
   'Sudfeld, Nate',
@@ -91,6 +92,101 @@ var QBArray2016 = [
   'Wentz, Carson',
   'Wilson, Russell',
   'Winston, Jameis'
+];
+
+var qbIDs = [
+  '18118',
+  '12083',
+  '16245',
+  '17974',
+  '11527',
+  '4314',
+  '15293',
+  '7242',
+  '16497',
+  '18018',
+  '18525',
+  '16311',
+  '8723',
+  '5054',
+  '17932',
+  '14252',
+  '8972',
+  '12841',
+  '9902',
+  '14404',
+  '18139',
+  '18123',
+  '8283',
+  '611',
+  '13723',
+  '12982',
+  '16041',
+  '15201',
+  '17922',
+  '8769',
+  '16836',
+  '14257',
+  '15190',
+  '17927',
+  '17179',
+  '2405',
+  '11992',
+  '8358',
+  '16907',
+  '6489',
+  '14971',
+  '13443',
+  '15694',
+  '17966',
+  '13697',
+  '14008',
+  '17929',
+  '12771',
+  '4932',
+  '16850',
+  '14868',
+  '16763',
+  '16116',
+  '5282',
+  '6276',
+  '11047',
+  '15746',
+  '16175',
+  '14219',
+  '5834',
+  '15093',
+  '13320',
+  '8590',
+  '14053',
+  '2428',
+  '16864',
+  '13270',
+  '18055',
+  '8244',
+  '2593',
+  '3807',
+  '3867',
+  '732',
+  '8415',
+  '16211',
+  '4633',
+  '16139',
+  '17009',
+  '6739',
+  '14895',
+  '9038',
+  '4737',
+  '18104',
+  '13799',
+  '14657',
+  '12831',
+  '13103',
+  '11422',
+  '13910',
+  '17920',
+  '14536',
+  '16762'
 ];
 
 var RBArray2016 = [
@@ -226,16 +322,40 @@ var RBArray2016 = [
   'Zenner, Zach'
 ];
 
+// Player Object
+function PlayerObject(name, playerID, position){
+  this.name = name;
+  this.playerID = playerID;
+  this.position = position;
+}
+
+// generates an array of qb player objects and returns
+function BuildQBArray(qbNames, qbIDs){
+  var qbObjects = [];
+
+  for(var i = 0; i < qbNames.length; i++){
+    var newQB = new PlayerObject(qbNames[i], qbIDs[i], 'QB');
+    qbObjects.push(newQB);
+  }
+
+  return qbObjects;
+}
+
+var myQB = BuildQBArray(qbNames, qbIDs);
+
 function makeQBUL(array, position){
   var list = document.getElementById(position);
+  //console.log(array);
+
 
   // source: http://stackoverflow.com/questions/11128700/create-a-ul-and-fill-it-based-on-a-passed-array
   for(var i = 0; i < array.length; i++) {
+
         // Create the list item:
         var item = document.createElement('li');
         var link = document.createElement('a');
 
-        link.appendChild(document.createTextNode(array[i]))
+        link.appendChild(document.createTextNode(array[i]['name']))
         link.href = "#";
         // Set its contents:
         item.appendChild(link);
@@ -248,20 +368,19 @@ function makeQBUL(array, position){
     return list;
 }
 
+document.getElementById('qbdropdown').appendChild(makeQBUL(myQB, 'qb'));
+//document.getElementById('rbdropdown').appendChild(makeQBUL(RBArray2016, 'rb'));
 
+var QB_BUTTON_CLICKED = document.getElementById('qbButton').value;
+var RB_BUTTON_CLICKED = document.getElementById('qbButton').value;
 
-
-document.getElementById('qbdropdown').appendChild(makeQBUL(QBArray2016, 'qb'));
-document.getElementById('rbdropdown').appendChild(makeQBUL(RBArray2016, 'rb'));
-
-var qbButtonClicked = document.getElementById('qbButton').value;
+var apiStats;
 
 $('#qb li').on('click', function(){
   var myTable = document.getElementById('stats-table');
-
-  // alert(qbButtonClicked);
+  // alert(QB_BUTTON_CLICKED);
   // 0 means not clicked, 1 means clicked
-  if(qbButtonClicked == 0){
+  if(QB_BUTTON_CLICKED == 'false'){
     var columnRow = document.createElement('tr');
     var columnHeadings = ['Name',
       'Passes Completed',
@@ -269,7 +388,7 @@ $('#qb li').on('click', function(){
       'Yards Gained by Passing',
       'Passing Touchdowns',
       'Interceptions Thrown',
-      'Rating',
+      'Passing Rating',
       'Times Sacked',
       'Yards Lost due to Sacks'
     ];
@@ -291,7 +410,15 @@ $('#qb li').on('click', function(){
     myTable.appendChild(playerRow);
 
 
-    qbButtonClicked = 1;
+    QB_BUTTON_CLICKED = 'true';
+
+    // fill out the api stuff
+    //var playerClicked = $(this).text();
+    //var playerObject = $.grep(myQB, function(e){ return e.name === playerClicked; });
+
+
+
+
   }
   else{
     var playerRow = document.createElement('tr');
@@ -301,5 +428,76 @@ $('#qb li').on('click', function(){
     playerRow.appendChild(playerCell);
     myTable.appendChild(playerRow);
 
+
   }
+
+  // call the api yo
+  var playerClicked = $(this).text();
+  var playerObject = $.grep(myQB, function(e){ return e.name === playerClicked; });
+
+  GetPlayerStatsFromAPI(playerObject);
+  console.log(apiStats['PlayerSeason']);
+
+  var qbStats = [];
+  var passingCompletions = apiStats['PlayerSeason']['PassingCompletions'];
+  var passesAttempted = apiStats['PlayerSeason']['PassingAttempts'];
+  var passingYards = apiStats['PlayerSeason']['PassingYards'];
+  var passingTouchdowns = apiStats['PlayerSeason']['PassingTouchdowns'];
+  var passingInterceptions = apiStats['PlayerSeason']['PassingInterceptions'];
+  var passingRating = apiStats['PlayerSeason']['PassingRating'];
+  var passingSacks = apiStats['PlayerSeason']['PassingSacks'];
+  var passingSackYards = apiStats['PlayerSeason']['PassingSackYards'];
+
+  qbStats.push(passingCompletions);
+  qbStats.push(passesAttempted);
+  qbStats.push(passingYards);
+  qbStats.push(passingTouchdowns);
+  qbStats.push(passingInterceptions);
+  qbStats.push(passingRating);
+  qbStats.push(passingSacks);
+  qbStats.push(passingSackYards);
+
+  for(var i = 0 ; i < qbStats.length; i++){
+    var playerCell = document.createElement('th');
+    playerCell.appendChild(document.createTextNode(qbStats[i]));
+    playerRow.appendChild(playerCell);
+    myTable.appendChild(playerRow);
+  }
+
+
 });
+
+$('#clear-button').on('click', function(){
+  $("#stats-table tr").remove();
+  QB_BUTTON_CLICKED = 'false';
+  RB_BUTTON_CLICKED = 'false';
+});
+
+
+function GetPlayerStatsFromAPI(playerObject){
+
+  $(function() {
+  $.ajax({
+      async: false,
+      // player id starts at 732
+      url: "https://api.fantasydata.net/v3/nfl/stats/JSON/Player/" + playerObject[0]['playerID'],
+      beforeSend: function(xhrObj){
+          // Request headers
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key"," 01c35bafdc1b44f6b555db93e7997b0c");
+      },
+      type: "GET",
+      // Request body
+      data: "{body}",
+  })
+  .done(function(data) {
+      //alert("yay");
+      //console.log(data);
+      //myd.push(data);
+      apiStats = data;
+      //console.log("NAME: " + data[0].Name + " FANTASY POSITION: " + data[0].FantasyPosition);
+  })
+  .fail(function() {
+      alert("error");
+  });
+});
+}
