@@ -6,7 +6,7 @@ body {
 }
 
 .header {
-  background-color: #27ae60;
+  background-color: #3498db;
   width: 100%;
 }
 
@@ -15,4 +15,16 @@ body {
   vertical-align: middle;
   font-size: 90px;
   font-weight: 300;
+}
+
+tr:nth-child(even) {
+  background-color: #3498db;
+}
+
+.position-buttons {
+  padding-top: 5px;
+
+}
+.col-lg-12 {
+  background-color: #3498db;
 }
