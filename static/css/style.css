@@ -21,6 +21,12 @@ tr:nth-child(even) {
   background-color: #3498db;
 }
 
+tr{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+}
+
 .position-buttons {
   padding-top: 5px;
 
